@@ -4,62 +4,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rohan's Profile</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/tailwind.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <meta name="google-site-verification" content="XwulgscgBhStsSRPeD4SmZ58S3wlEGfygp9OCIFI83Q" />
+  <title>Rohan's Personal Website</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://kit.fontawesome.com/34782a4818.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
-  <div id="loading-top" class="loading-bar loading-bar-top"></div>
-  <div id="loading-bottom" class="loading-bar loading-bar-bottom"></div>
-  <div id="content" class="max-w-4xl w-full fade-slide-down" style="display: none;">
-    <header class="text-center mb-12">
-      <img src="/assets/profile-picture.jpeg" alt="Profile Picture" class="rounded-full w-32 mx-auto mb-4">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Rohan</h1>
-      <p class="text-xl md:text-2xl mb-2">From Bangladesh 🇧🇩</p>
-      <br>
-      <p class="text-xl md:text-2xl mb-2">Most Used Languages: HTML <i class="fa-brands fa-html5"></i>, NodeJS <i class="fa-brands fa-node-js"></i></p>
-      <p class="text-xl md:text-2xl"><i class="fa-brands fa-discord"></i> Discord: rohan_ohio</p>
-      <p class="text-xl md:text-2xl"><i class="fa-brands fa-github"></i> GitHub: RohanDaCoder</p>
-    </header>
-
-    <main class="space-y-8">
-      <section>
-        <h2 class="text-2xl md:text-4xl font-bold mb-4">Projects</h2>
-        <div class="space-y-4">
-          <button class="project-btn" onclick="toggleDescription('desc1')">
-            Lean, A Discord Bot Using NodeJS
-          </button>
-          <div id="desc1" class="description">
-            Lean Is A Discord Bot Aiming For Moderation, Fun, Economy etc. The Bot Is Still In Development.
-            <br>
-            <a href="https://github.com/RohanDaCoder/Lean" target="_blank" rel="noopener noreferrer" class="learn-more-btn">Source Code <i class="fa-solid fa-code"></i></a>
-          </div>
-          <button class="project-btn" onclick="toggleDescription('desc2')">
-            Free Minecraft
-          </button>
-          <div id="desc2" class="description">
-            Experience the world of Minecraft for free on both mobile and PC. Download APK For Mobile And MC Center For PC
-            <a href="https://rohandacoder.github.io/MCPE-Free" target="_blank" rel="noopener noreferrer" class="learn-more-btn">Open Website <i class="fa-solid fa-download"></i></a>
-          </div>
-          <button class="project-btn" onclick="toggleDescription('desc3')">
-            Tic Tac Toe
-          </button>
-          <div id="desc3" class="description">
-            A Simple Tic Tac Toe Game Made Using TailWindCSS, JQuery
-            <br>
-            <a href="https://rohandacoder.github.io/TicTacToe" target="_blank" rel="noopener noreferrer" class="learn-more-btn">Play <i class="fa-solid fa-play"></i></a>
-          </div>
-        </div>
-      </section>
-    </main>
+<body class="font-sans fade-in">
+  <!-- Loader -->
+  <div class="loader-container" id="loader">
+    <div class="loader"></div>
   </div>
 
-  <script src="/assets/jquery-3.6.0.min.js"></script>
-  <script src="scripts.js"></script>
+  <!-- Main Content -->
+  <div id="main-content" class="hidden">
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center fade-in fade-in-visible">
+        <div class="text-white text-2xl flex items-center">
+          <img src="https://avatars.githubusercontent.com/RohanDaCoder" alt="Profile" class="w-10 h-10 rounded-full mr-2">
+          Rohan
+        </div>
+        <ul class="flex space-x-4">
+          <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
+          <li><a href="#projects" class="text-gray-400 hover:text-white">Projects</a></li>
+          <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section id="about" class="py-16 fade-in fade-in-visible">
+      <div class="container mx-auto text-center">
+        <h1 class="text-4xl font-bold">About Me</h1>
+        <p class="mt-4 text-lg">
+          Hello, I'm Rohan from Bangladesh 🇧🇩<br>
+          I am a passionate coder with a love for creating amazing projects.<br>
+          I mostly use <i class="fab fa-node-js text-green-500"></i> NodeJS and <i class="fab fa-html5" style="color: #e34c26;"></i> HTML.<br>
+          I often make Discord bots.
+        </p>
+      </div>
+    </section>
+    <section id="projects" class="py-16 bg-gray-900 fade-in fade-in-visible">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold text-white">Projects</h2>
+        <div class="mt-8 flex flex-wrap justify-center">
+          <div class="w-full md:w-1/2 lg:w-1/3 p-4">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-bold text-white cursor-pointer toggle-description flex items-center">
+                <i class="fas fa-robot mr-2"></i> Lean - Discord Bot
+              </h3>
+              <div class="mt-4 text-gray-400 description">
+                <p>A Discord Bot made using NodeJS and Discord.js v14.</p>
+                <a href="https://github.com/RohanDaCoder/Lean" class="mt-4 inline-block text-blue-500 hover:underline">
+                  <i class="fa-solid fa-code"></i> View Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 lg:w-1/3 p-4">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-bold text-white cursor-pointer toggle-description flex items-center">
+                <i class="fas fa-gamepad mr-2"></i> Free Minecraft
+              </h3>
+              <div class="mt-4 text-gray-400 description">
+                <p>Download Minecraft APKs and MC Center For PC to play Minecraft Bedrock for free on both devices.</p>
+                <a href="https://rohandacoder.github.io/MCPE-Free/" class="mt-4 inline-block text-blue-500 hover:underline">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Website
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact" class="py-16 fade-in fade-in-visible">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold">Contact</h2>
+        <p class="mt-4 text-lg">Feel free to reach out to me on Discord: <span class="font-bold">rohan_ohio</span></p>
+        <div class="mt-4 flex justify-center">
+          <a href="https://github.com/RohanDaCoder" class="mx-2 text-gray-400 hover:text-white"><i class="fab fa-github fa-2x"></i></a>
+          <a href="https://discordapp.com/users/rohan_ohio" class="mx-2 text-gray-400 hover:text-white"><i class="fab fa-discord fa-2x"></i></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
